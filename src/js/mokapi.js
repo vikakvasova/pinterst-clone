@@ -1,18 +1,18 @@
 
 import { createPinterest } from "./createPinterest.js";
 import { setPinterest } from "./localstorage.js";
-export let newImages = [];
+let newImages = [];
 
-export function setImages(newArray) {
+function setImages(newArray) {
     newImages = newArray;
 }
-export const URL_API = 'https://62b0c0c4e460b79df04c901b.mockapi.io/api';
-export async function getPinterestImage() {
+const URL_API = 'https://62b0c0c4e460b79df04c901b.mockapi.io/api';
+async function getPinterestImage() {
     const response = await fetch(`${URL_API}/pinterest`);
     const pinterest = await response.json();
     return pinterest;
 }
-export function createElement() {
+function createPinterestIo() {
     getPinterestImage().then((pinterest) => {
         pinterest.forEach(({id, name, avatar, description, hashtag}) => {
             let gallery = {};
@@ -27,3 +27,4 @@ export function createElement() {
             });
     })
 }
+export{createPinterestIo, getPinterestImage}
